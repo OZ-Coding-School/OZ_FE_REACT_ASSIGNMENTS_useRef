@@ -6,9 +6,12 @@ function App() {
   const [searchText, setSearchText] = useState("");
 
   // 1. input창에 접근하기 위한 useRef를 선언하세요.
+  const refInput = useRef(null);
 
   // 2. input창에서 검색 단어를 받아와 상태를 업데이트 하는 함수를 작성하세요.
-  const getSearchValue = (e) => {};
+  const getSearchValue = () => {
+    setSearchText(refInput.current.value);
+  };
 
   return (
     <>
@@ -16,9 +19,9 @@ function App() {
       <p>검색할 키워드를 입력한 후 검색 버튼을 클릭하세요.</p>
       <div className="search-input">
         {/* 3. 선언한 useRef와 input을 연결하세요. */}
-        <input type="text" />
+        <input type="text" ref={refInput} />
         {/* 4. 검색 버튼을 클릭하면 검색어의 상태가 변경되도록 하세요.*/}
-        <button>검색</button>
+        <button onClick={getSearchValue}>검색</button>
       </div>
       {searchText && (
         <div>
